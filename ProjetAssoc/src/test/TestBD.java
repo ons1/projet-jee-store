@@ -4,6 +4,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import controller.ClientService;
+
 import model.Article;
 import model.Client;
 
@@ -24,8 +26,8 @@ public class TestBD {
 		Article article = em.find(Article.class, 4);
 		System.out.println(article);
 		
-		Client my_cli = em.find(Client.class, "admini");
-		System.out.println((my_cli != null && my_cli.getMdp().equals("admin") ? true:false));
+		System.out.println(ClientService.logOK("admin", "admini"));
+		System.out.println(ClientService.logOK("admin", "admin"));
 		/*AuthorService auth_serv = new AuthorService(em);
 		Author author = auth_serv.find(5);
 		auth_serv.delete(5);
