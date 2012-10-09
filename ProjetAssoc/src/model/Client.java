@@ -9,7 +9,8 @@ import javax.persistence.Table;
 @Table(name="CLIENT", schema="zakaria")
 public class Client {
 
-	
+	public Client() {
+	}
 	public Client(String identifiant, String mdp, String nom, String prenom,
 			String adresse, String cp, String ville, String pays) {
 		super();

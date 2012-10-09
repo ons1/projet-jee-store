@@ -3,6 +3,7 @@ package controller.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,31 +29,41 @@ public class ControlAccess extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		process(request, response);
+			
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getParameter("user") != null){
+			session = request.getSession();
+			session.setAttribute("user", request.getParameter("user"));
+		}
+		
 		process(request, response);
 	}
 	
 	protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		response.setContentType("text/html");
+		
+		RequestDispatcher dispatcher_login_page = this.getServletContext().getRequestDispatcher("/login.jsp");
 		session = request.getSession();
-		String user = request.getParameter("user");
-		String password = request.getParameter("password");
-		session.setAttribute("user", user);
-		session.setAttribute("password", password);
-		PrintWriter out = response.getWriter();
-		out.println("<h1>Hello world ! </h1>");
-		out.println("<h1>getServletName() : " +
-				getServletName() + "</h1>");
-		out.println("<h1>URL : " +
-				request.getRequestURI() + "</h1>");
-		out.println("<h1>USER : "+user+"</h1>");
-		out.println("<h1>PASS : "+password+"</h1>");
+		boolean isLogged = (session != null && session.getAttribute("user") != null) ? true:false;
+		if(isLogged){
+			PrintWriter out = response.getWriter();
+			out.println("<h1>Hello world ! </h1>");
+			out.println("<h1>getServletName() : " +
+					getServletName() + "</h1>");
+			out.println("<h1>URL : " +
+					request.getRequestURI() + "</h1>");
+			out.println("<h1>USER : "+session.getAttribute("user")+"</h1>");
+		}else{			
+			dispatcher_login_page.forward(request,response);
+		}
+		
 		
 	}
 
