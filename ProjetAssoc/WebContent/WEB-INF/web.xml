@@ -11,12 +11,22 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>ControlAccess</display-name>
+    <display-name></display-name>
     <servlet-name>ControlAccess</servlet-name>
     <servlet-class>controller.servlet.ControlAccess</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ControlAccess</servlet-name>
     <url-pattern>/ControlAccess</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name></display-name>
+    <servlet-name>Disconnect</servlet-name>
+    <servlet-class>controller.service.Disconnect</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Disconnect</servlet-name>
+    <url-pattern>/Disconnect</url-pattern>
   </servlet-mapping>
 </web-app>

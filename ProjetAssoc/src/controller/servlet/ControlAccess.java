@@ -45,12 +45,8 @@ public class ControlAccess extends HttpServlet {
 			session = request.getSession();
 			session.setAttribute("user", request.getParameter("user"));
 			session.setAttribute("panier", new Panier());
-			session.setAttribute("erreur", "");
-			this.getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 		}else{
-			if(session != null)
-				session.invalidate();
-			
 			request.setAttribute("erreur", "Utlisateur et/ou mot de passe incorrect !");
 			this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 		}

@@ -42,4 +42,17 @@ public class Panier {
 			lignesPanier.get(index).setQuantite(lignesPanier.get(index).getQuantite()+1);
 		}
 	}
+	
+	
+	/**
+	 * Renvoi le nombre d'article dans le panier
+	 * @return
+	 */
+	public int getNumberArticle(){
+		int number = 0;
+		for(LignePanier l:lignesPanier){
+			number += l.getQuantite();
+		}
+		return number;
+	}
 }
