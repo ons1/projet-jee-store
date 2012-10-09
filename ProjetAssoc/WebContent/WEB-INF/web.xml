@@ -23,7 +23,7 @@
     <description></description>
     <display-name></display-name>
     <servlet-name>Disconnect</servlet-name>
-    <servlet-class>controller.service.Disconnect</servlet-class>
+    <servlet-class>controller.servlet.Disconnect</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Disconnect</servlet-name>

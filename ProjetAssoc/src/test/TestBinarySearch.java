@@ -9,7 +9,7 @@ public class TestBinarySearch {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ArrayList<Integer> ma_liste = new ArrayList<>();
+		ArrayList<Integer> ma_liste = new ArrayList<Integer>();
 		ma_liste.add(1);
 		ma_liste.add(2);
 		ma_liste.add(5);
