@@ -7,7 +7,7 @@ import javax.persistence.Persistence;
 import model.Article;
 
 
-public class TD2 {
+public class TestBD {
 
 	/**
 	 * @param args
