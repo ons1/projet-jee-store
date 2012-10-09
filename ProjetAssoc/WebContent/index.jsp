@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Bienvenue dans la caserne FranZaKikess</title>
 </head>
 <body>
 	<h1>LOGIN</h1>
@@ -19,7 +19,9 @@
 	<input type="text" name="user"><br>
 	<label for="password">Mot de passe : </label>
 	<input type="password" name="password">
+	<br>
 	<input type="submit" value="OK">
 	</form>
+	<a href="subscription.jsp">Pas encore inscrit ?</a>
 </body>
 </html>
