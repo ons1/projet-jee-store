@@ -7,11 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>LOGIN</h1>
-	<form name="identification" action="ControlAccess" method="post">
-	Identifiant : <input type="text" name="user"><br>
-	Mot de passe : <input type="password" name="password">
-	<input type="submit" value="OK">
-	</form>
+
 </body>
 </html>

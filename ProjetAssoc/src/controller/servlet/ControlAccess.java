@@ -9,14 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import controller.ClientService;
+import model.Panier;
+
+import controller.service.ClientService;
 
 /**
  * Servlet implementation class ControlAccess
  */
 public class ControlAccess extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	HttpSession session;
+	private HttpSession session;
+
 	
 	
     /**
@@ -30,34 +33,28 @@ public class ControlAccess extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		process(request, response);
+		//Quoi qu'il arrive, on redirige vers la page l'index
+		 this.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("user") != null && ClientService.logOK(request.getParameter("user"), request.getParameter("password"))){
+		ClientService clientService = new ClientService();
+		if(clientService.checkUserPassword(request.getParameter("user"), request.getParameter("password"))){
 			session = request.getSession();
 			session.setAttribute("user", request.getParameter("user"));
-		}
-		
-		process(request, response);
-	}
-	
-	protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
-		RequestDispatcher dispatcher_login_page = this.getServletContext().getRequestDispatcher("/login.jsp");
-		session = request.getSession();
-		//response.set
-		boolean isLogged = (session != null && session.getAttribute("user") != null) ? true:false;
-		if(isLogged){
+			session.setAttribute("panier", new Panier());
+			session.setAttribute("erreur", "");
+			this.getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
+		}else{
+			if(session != null)
+				session.invalidate();
 			
-		}else{			
-			dispatcher_login_page.forward(request,response);
+			request.setAttribute("erreur", "Utlisateur et/ou mot de passe incorrect !");
+			this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 		}
-		
-		
 	}
 
 }
