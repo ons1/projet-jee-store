@@ -9,4 +9,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>ControlAccess</display-name>
+    <servlet-name>ControlAccess</servlet-name>
+    <servlet-class>controller.servlet.ControlAccess</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ControlAccess</servlet-name>
+    <url-pattern>/ControlAccess</url-pattern>
+  </servlet-mapping>
 </web-app>

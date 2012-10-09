@@ -20,7 +20,7 @@ public class TestBD {
 		
 		System.out.println("RECHERCHE");
 		//Author author = em.find(Author.class, 5);
-		Article article = em.find(Article.class, 5);
+		Article article = em.find(Article.class, 4);
 		System.out.println(article);
 		/*AuthorService auth_serv = new AuthorService(em);
 		Author author = auth_serv.find(5);
@@ -30,6 +30,7 @@ public class TestBD {
 		// Fermeture de l’ "EntityManager"
 		em.close();
 		emf.close();
+		
 	}
 
 }
