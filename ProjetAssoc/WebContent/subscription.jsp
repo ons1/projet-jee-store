@@ -13,17 +13,17 @@
 
 <form name="inscription" action="Subscription" method="post">
 		<label for="id">Identifiant : </label>
-		<input type="text" name="user" ><br>
-		<label for="password">Mot de passe : </label>
-		<input type="password" name="password"><br>
-		<label for="password">Mot de passe (confirmation) : </label>
-		<input type="password" name="password"><br>
+		<input type="text" name="id" ><br>
+		<label for="password1">Mot de passe : </label>
+		<input type="password" name="password1"><br>
+		<label for="password2">Mot de passe (confirmation) : </label>
+		<input type="password" name="password2"><br>
 		<label for="nom">Nom de famille : </label>
 		<input type="text" name="nom"><br>
 		<label for="prenom">Prenom : </label>
 		<input type="text" name="prenom"><br>
 		<label for="adresse">Adresse (rue) : </label>
-		<input type="text" name="nom"><br>
+		<input type="text" name="adresse"><br>
 		<label for="cp">Code postal : </label>
 		<input type="text" name="cp"><br>
 		<label for="ville">Ville : </label>

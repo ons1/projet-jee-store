@@ -32,13 +32,17 @@
 	<%
 		Panier mon_panier = (Panier) session.getAttribute("panier");
 	%>
-	<p>Bonjour <%= session.getAttribute("user") %></p>
-	<br>
- 	<a href="panier.jsp">Votre panier contient : <%= mon_panier.getNumberArticle() %> articles</a>
- 	<br>
-	<a href="home.jsp">Home</a>
-	<br>
-	<a href="Disconnect">Se déconnecter</a>
+	<!-- ACCUEIL -->
+	<table border="1" width="100%">
+		<tr>
+			<td><a href="index.jsp">Accueil</a></td>
+			<td><a href="articles.jsp">Articles</a></td>
+			<td><a href="commande.jsp">Mes commandes</a></td>
+			<td><a href="panier.jsp">Panier</a></td>
+			<td>Adherent <%= session.getAttribute("user") %> <a href="Disconnect">Se déconnecter</a></td> 
+		</tr>
+	</table>
+	<h1>Bienvenue sur le site des adherents de l'association</h1>
 	<%} %>
 	
 	<!-- LOGIN -->

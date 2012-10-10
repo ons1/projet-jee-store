@@ -11,6 +11,7 @@ import controller.service.ArticleService;
 import controller.service.ClientService;
 
 import model.Article;
+import model.Client;
 
 
 public class TestBD {
@@ -24,21 +25,28 @@ public class TestBD {
 		// Récupération d’une instance de "EntityManager"
 		EntityManager em = emf.createEntityManager();
 		
-		System.out.println("RECHERCHE");
-		//Author author = em.find(Author.class, 5);
+		System.out.println("RECHERCHE article avec id 4 :");
 		Article article = em.find(Article.class, 4);
 		System.out.println(article);
+		
+		//TEST CLIENTSERVICE
+		System.out.println("UTILISATION CLIENT SERVICE");
 		ClientService clientService = new ClientService(em);
+		System.out.println("TEST checkUserPassword (FALSE -> TRUE)");
 		System.out.println(clientService.checkUserPassword("admin", "admini"));
 		System.out.println(clientService.checkUserPassword("admin", "admin"));
-		
-		
+		System.out.println("RECUPERATION DE TOUS LES ARTICLES");
 		ArticleService articleService = new ArticleService(em);
 		Collection<Article> list_article = articleService.getListArticleOnBD();
 		
 		for(Article art:list_article){
 			System.out.println(art);
 		}
+		
+		//TEST AJOUT CLIENT EN BASE
+		Client client = new Client("zak", "zak", "oualkadi", "zakaria", "22 rue Tite live", "67200", "Strasbourg", "FRANCE");
+		clientService.create("zak", "zak", "oualkadi", "zakaria", "22 rue Tite live", "67200", "Strasbourg", "FRANCE");
+		
 		/*AuthorService auth_serv = new AuthorService(em);
 		Author author = auth_serv.find(5);
 		auth_serv.delete(5);

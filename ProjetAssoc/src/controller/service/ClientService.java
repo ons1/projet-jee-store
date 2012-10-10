@@ -10,6 +10,7 @@ import model.Client;
 public class ClientService {
 
 	private EntityManager em;
+	
 	public ClientService(EntityManager pem) {
 		em = pem;
 	}

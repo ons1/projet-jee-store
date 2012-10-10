@@ -41,13 +41,14 @@ public class Subscription extends HttpServlet {
 		EntityManager em = emf.createEntityManager();
 		ClientService clientService = new ClientService(em);
 		String id = request.getParameter("id");
-		String mdp = request.getParameter("mdp");
+		String mdp = request.getParameter("password1");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
 		String adresse = request.getParameter("adresse");
 		String cp = request.getParameter("cp");
 		String ville = request.getParameter("ville");
 		String pays = request.getParameter("pays");
+		System.out.println(id+" "+mdp+" "+nom+" "+prenom+" "+adresse+" "+cp+" "+ville);
 		clientService.create(id, mdp, nom, prenom, adresse, cp, ville, pays);
 		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 		em.close();
