@@ -2,6 +2,9 @@ package controller.servlet;
 
 import java.io.IOException;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -40,7 +43,9 @@ public class ControlAccess extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ClientService clientService = new ClientService();
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetAssoc");
+		EntityManager em = emf.createEntityManager();
+		ClientService clientService = new ClientService(em);
 		if(clientService.checkUserPassword(request.getParameter("user"), request.getParameter("password"))){
 			session = request.getSession();
 			session.setAttribute("user", request.getParameter("user"));
@@ -50,6 +55,9 @@ public class ControlAccess extends HttpServlet {
 			request.setAttribute("erreur", "Utlisateur et/ou mot de passe incorrect !");
 			this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 		}
+		
+		//Fermeture du manager
+		em.close();
 	}
 
 }
