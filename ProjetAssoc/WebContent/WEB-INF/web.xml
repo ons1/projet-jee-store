@@ -11,32 +11,42 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>ControlAccess</display-name>
-    <servlet-name>ControlAccess</servlet-name>
-    <servlet-class>controller.servlet.ControlAccess</servlet-class>
+    <display-name>Home</display-name>
+    <servlet-name>HomeServlet</servlet-name>
+    <servlet-class>controller.servlet.HomeServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ControlAccess</servlet-name>
-    <url-pattern>/ControlAccess</url-pattern>
+    <servlet-name>HomeServlet</servlet-name>
+    <url-pattern>/home</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>Disconnect</display-name>
-    <servlet-name>Disconnect</servlet-name>
-    <servlet-class>controller.servlet.Disconnect</servlet-class>
+    <servlet-name>DisconnectServlet</servlet-name>
+    <servlet-class>controller.servlet.DisconnectServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Disconnect</servlet-name>
-    <url-pattern>/Disconnect</url-pattern>
+    <servlet-name>DisconnectServlet</servlet-name>
+    <url-pattern>/disconnect</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>Subscription</display-name>
-    <servlet-name>Subscription</servlet-name>
-    <servlet-class>controller.servlet.Subscription</servlet-class>
+    <servlet-name>SubscriptionServlet</servlet-name>
+    <servlet-class>controller.servlet.SubscriptionServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Subscription</servlet-name>
-    <url-pattern>/Subscription</url-pattern>
+    <servlet-name>SubscriptionServlet</servlet-name>
+    <url-pattern>/subscription</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ArticleServlet</display-name>
+    <servlet-name>ArticleServlet</servlet-name>
+    <servlet-class>controller.servlet.ArticleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ArticleServlet</servlet-name>
+    <url-pattern>/articles</url-pattern>
   </servlet-mapping>
 </web-app>

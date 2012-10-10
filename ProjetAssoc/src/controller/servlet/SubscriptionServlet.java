@@ -15,13 +15,13 @@ import controller.service.ClientService;
 /**
  * Servlet implementation class Subscription
  */
-public class Subscription extends HttpServlet {
+public class SubscriptionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Subscription() {
+    public SubscriptionServlet() {
         super();
     }
 
@@ -29,7 +29,7 @@ public class Subscription extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+		this.getServletContext().getRequestDispatcher("/subscription.jsp").forward(request,response);
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class Subscription extends HttpServlet {
 		String pays = request.getParameter("pays");
 		System.out.println(id+" "+mdp+" "+nom+" "+prenom+" "+adresse+" "+cp+" "+ville);
 		clientService.create(id, mdp, nom, prenom, adresse, cp, ville, pays);
-		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/home").forward(request, response);
 		em.close();
 
 		

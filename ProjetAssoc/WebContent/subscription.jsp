@@ -11,7 +11,7 @@
 <body>
 <h1>Veuillez vous inscrire :</h1>
 
-<form name="inscription" action="Subscription" method="post">
+<form name="inscription" action="subscription" method="post">
 		<label for="id">Identifiant : </label>
 		<input type="text" name="id" ><br>
 		<label for="password1">Mot de passe : </label>

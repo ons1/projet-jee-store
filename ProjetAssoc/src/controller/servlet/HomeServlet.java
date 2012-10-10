@@ -18,7 +18,7 @@ import controller.service.ClientService;
 /**
  * Servlet implementation class ControlAccess
  */
-public class ControlAccess extends HttpServlet {
+public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HttpSession session;
 
@@ -27,7 +27,7 @@ public class ControlAccess extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ControlAccess() {
+    public HomeServlet() {
         super();
     }
 
@@ -35,8 +35,12 @@ public class ControlAccess extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Quoi qu'il arrive, on redirige vers la page l'index
-		 this.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+		//Controle de session
+		if(request.getSession(false) == null || request.getSession(false).getAttribute("user") == null)
+			this.getServletContext().getRequestDispatcher("/login.jsp").forward(request,response);
+		else
+			this.getServletContext().getRequestDispatcher("/home.jsp").forward(request,response);
+			
 	}
 
 	/**
@@ -50,10 +54,10 @@ public class ControlAccess extends HttpServlet {
 			session = request.getSession();
 			session.setAttribute("user", request.getParameter("user"));
 			session.setAttribute("panier", new Panier());
-			this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);
 		}else{
 			request.setAttribute("erreur", "Utlisateur et/ou mot de passe incorrect !");
-			this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 		
 		//Fermeture du manager
