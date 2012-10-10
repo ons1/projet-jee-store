@@ -29,4 +29,14 @@
     <servlet-name>Disconnect</servlet-name>
     <url-pattern>/Disconnect</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Subscription</display-name>
+    <servlet-name>Subscription</servlet-name>
+    <servlet-class>controller.servlet.Subscription</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Subscription</servlet-name>
+    <url-pattern>/Subscription</url-pattern>
+  </servlet-mapping>
 </web-app>
