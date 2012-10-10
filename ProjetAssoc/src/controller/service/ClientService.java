@@ -39,12 +39,12 @@ public class ClientService {
 		      newClient.setPays(pays);
 		      em.persist(newClient);
 		      entr.commit();
-		      
-		    }
-		    finally{
-		      em.close();
 		      return true;
 		    }
+		catch (Exception e) {
+			return false;
+		}
+		    
 	}
 
 }
