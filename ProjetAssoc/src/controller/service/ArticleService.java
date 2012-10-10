@@ -16,6 +16,7 @@ public class ArticleService {
 		em = pem;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public Collection<Article> getListArticleOnBD(){
 
 		return em.createQuery("SELECT a FROM "+ Article.class.getName()+" a").getResultList();

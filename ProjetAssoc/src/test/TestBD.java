@@ -11,7 +11,6 @@ import controller.service.ArticleService;
 import controller.service.ClientService;
 
 import model.Article;
-import model.Client;
 
 
 public class TestBD {
