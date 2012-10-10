@@ -36,7 +36,6 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Controle de session
-		System.out.println("HOME BY GET");
 		if(request.getSession(false) == null || request.getSession(false).getAttribute("user") == null)
 			this.getServletContext().getRequestDispatcher("/login.jsp").forward(request,response);
 		else

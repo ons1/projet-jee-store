@@ -57,31 +57,68 @@ public class PanierServlet extends HttpServlet {
 
 			Article art = articleService.getArticle(Integer.parseInt((String) request.getParameter("code")));
 			
+			//AJOUTER UN ARTICLE DANS LE PANIER
 			if(action.equals("ajouter"))
 			{
-				if(panier != null)
-					panier.addArticle(art);
+				int qte = Integer.parseInt(request.getParameter("quantite"));
+				//SI STOCK SUFFISANT
+				if(qte <= art.getStock())
+				{
+					if(panier != null)
+						panier.addArticle(art,qte);
+					else
+					{
+						panier = new Panier();
+						panier.addArticle(art,qte);
+						session.setAttribute("panier", panier);
+					}
+					articleService.updateQteArticle(art,(art.getStock()-qte));
+				}
+				//SI STOCK INSUFFISANT
 				else
 				{
-					panier = new Panier();
-					panier.addArticle(art);
-					session.setAttribute("panier", panier);
+					request.setAttribute("erreur","Stock insuffisant !");
 				}
-			}else if(action.equals("supprimer"))
+				this.getServletContext().getRequestDispatcher("/articles").forward(request,response);
+			}
+			//SUPPRESSION DE L'ARTICLE DANS LE PANIER
+			else if(action.equals("supprimer"))
 			{
+				int qte = Integer.parseInt(request.getParameter("quantite"));
 				if(panier != null)
 				{
 					panier.removeArticle(art);
 				}
+				//On remet en stock
+				articleService.updateQteArticle(art,(art.getStock()+qte));
+				this.getServletContext().getRequestDispatcher("/panier.jsp").forward(request,response);
 			}
-		} catch (NumberFormatException e) {
+			//MAJ QUANTITE DANS LE PANIER
+			else if(action.equals("majqte"))
+			{
+				int qte = Integer.parseInt(request.getParameter("quantite"));
+				int qteOld = Integer.parseInt(request.getParameter("quantiteOld"));
+				if((qte > qteOld && (qte-qteOld) <= art.getStock()) || qte < qteOld){
+					panier.majArticle(art,qte);
+					//On met a jour le stock
+					articleService.updateQteArticle(art,(art.getStock()+qteOld)-qte);
+				}else{
+					request.setAttribute("erreur","Stock insuffisant !");
+				}
+
+				this.getServletContext().getRequestDispatcher("/panier.jsp").forward(request,response);
+			}
+		} 
+		catch (NumberFormatException e) 
+		{
 			System.out.println("BAD CODE");
 			e.printStackTrace();
-		} catch (ArticleNotFoundException e) {
+		} 
+		catch (ArticleNotFoundException e) 
+		{
 			e.printStackTrace();
 		} 
 
-		this.getServletContext().getRequestDispatcher("/panier.jsp").forward(request,response);
 		
 		//Fermeture du manager
 		em.close();

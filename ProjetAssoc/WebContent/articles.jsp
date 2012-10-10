@@ -22,6 +22,11 @@
 		</tr>
 	</table>
 	<h1>Catalogue des articles</h1>
+	<% // Affichage du message d'erreur s'il existe
+	      if (request.getAttribute("erreur") != null) { %>
+	<strong>Erreur : <%= (String) request.getAttribute("erreur")%></strong>
+	<br>
+	<%} %>
 	<table border="1" width="100%">
 		<tr>
 			<td>Code</td>
@@ -37,12 +42,15 @@
 			<td><%= art.getCode() %></td>
 			<td><%= art.getNom() %></td>
 			<td><%= art.getPrix() %></td>
-			<td><%= art.getStock() %></td>
+			<td><%= art.getStock() <= 0 ? "non disponible":art.getStock() %></td>
 			<td>
 				<form name="addArt<%=art.getCode() %>" action="panier" method="post">
-					<input type="submit" value="Commander"> 
 					<input type="hidden" name="action" value="ajouter">
-					<input type="hidden" name="code" value="<%=art.getCode()%>"> 
+					<input type="hidden" name="code" value="<%=art.getCode()%>">
+					<%if(art.getStock() >0){ %> 
+					<input type="text" name="quantite" value="1">
+					<input type="submit" value="Commander">
+					<%} %> 
 				</form>
 			</td>
 		</tr>

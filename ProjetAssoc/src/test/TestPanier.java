@@ -11,20 +11,20 @@ public class TestPanier {
 		Article art1 = new Article(1, "article1", 12.9, 2);
 		Panier mon_panier = new Panier();
 		System.out.println(mon_panier.toString());
-		mon_panier.addArticle(art12);
+		mon_panier.addArticle(art12,1);
 		System.out.println(mon_panier.toString());
-		mon_panier.addArticle(art11);
+		mon_panier.addArticle(art11,1);
 		System.out.println(mon_panier.toString());
-		mon_panier.addArticle(art43);
+		mon_panier.addArticle(art43,1);
 		System.out.println(mon_panier.toString());
-		mon_panier.addArticle(art1);
+		mon_panier.addArticle(art1,100);
 		System.out.println(mon_panier.toString());
-		mon_panier.addArticle(art12);
-		mon_panier.addArticle(art43);
-		mon_panier.addArticle(art12);
-		mon_panier.addArticle(art11);
-		mon_panier.addArticle(art11);
-		mon_panier.addArticle(art11);
+		mon_panier.addArticle(art12,1);
+		mon_panier.addArticle(art43,95);
+		mon_panier.addArticle(art12,1);
+		mon_panier.addArticle(art11,1);
+		mon_panier.addArticle(art11,1);
+		mon_panier.addArticle(art11,1);
 		System.out.println(mon_panier.toString());
 	}
 }

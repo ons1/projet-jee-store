@@ -32,14 +32,14 @@ public class Panier {
 	 * Utilise la classe comparator CompareLignePanierOnArticle
 	 * @param art
 	 */
-	public void addArticle(Article art){
-		LignePanier nvlle_ligne = new LignePanier(art, 1);
+	public void addArticle(Article art, int quantite){
+		LignePanier nvlle_ligne = new LignePanier(art, quantite);
 		int index = Collections.binarySearch(lignesPanier,nvlle_ligne, new CompareLignePanierOnArticle());
 		if(index < 0){
 			lignesPanier.add((-index)-1, nvlle_ligne);
 		}
 		else{
-			lignesPanier.get(index).setQuantite(lignesPanier.get(index).getQuantite()+1);
+			lignesPanier.get(index).setQuantite(lignesPanier.get(index).getQuantite()+quantite);
 		}
 	}
 	
@@ -65,6 +65,15 @@ public class Panier {
 		int index = Collections.binarySearch(lignesPanier,nvlle_ligne, new CompareLignePanierOnArticle());
 		if(index >= 0){
 			lignesPanier.remove(index);
+		}
+		
+	}
+	
+	public void majArticle(Article art, int quantite){
+		LignePanier nvlle_ligne = new LignePanier(art, quantite);
+		int index = Collections.binarySearch(lignesPanier,nvlle_ligne, new CompareLignePanierOnArticle());
+		if(index >= 0){
+			lignesPanier.get(index).setQuantite(quantite);
 		}
 		
 	}

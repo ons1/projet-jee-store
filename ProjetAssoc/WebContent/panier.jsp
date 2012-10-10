@@ -23,6 +23,11 @@
 		</tr>
 	</table>
 	<h1>Mon panier</h1>
+	<% // Affichage du message d'erreur s'il existe
+	      if (request.getAttribute("erreur") != null) { %>
+	<strong>Erreur : <%= (String) request.getAttribute("erreur")%></strong>
+	<br>
+	<%} %>
 	<table border="1" width="100%">
 		<tr>
 			<td>Code</td>
@@ -38,10 +43,19 @@
 			<td><%= l.getArticle().getCode() %></td>
 			<td><%= l.getArticle().getNom() %></td>
 			<td><%= l.getArticle().getPrix() %></td>
-			<td><%= l.getQuantite() %></td>
+			<td>
+				<form name="chgQte<%=l.getArticle().getCode() %>" action="panier" method="post">
+					<input type="text" name="quantite" value="<%= l.getQuantite() %>">
+					<input type="submit" value="maj"> 
+					<input type="hidden" name="quantiteOld" value="<%= l.getQuantite() %>">
+					<input type="hidden" name="action" value="majqte">
+					<input type="hidden" name="code" value="<%=l.getArticle().getCode()%>"> 
+				</form>
+			</td>
 			<td>
 				<form name="remArt<%=l.getArticle().getCode() %>" action="panier" method="post">
 					<input type="submit" value="Supprimer"> 
+					<input type="hidden" name="quantite" value="<%= l.getQuantite() %>">
 					<input type="hidden" name="action" value="supprimer">
 					<input type="hidden" name="code" value="<%=l.getArticle().getCode()%>"> 
 				</form>
