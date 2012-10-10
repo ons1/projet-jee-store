@@ -38,8 +38,14 @@
 			<td><%= art.getNom() %></td>
 			<td><%= art.getPrix() %></td>
 			<td><%= art.getStock() %></td>
-			<td>Commander</td>
-		</tr>	
+			<td>
+				<form name="addArt<%=art.getCode() %>" action="panier" method="post">
+					<input type="submit" value="Commander"> 
+					<input type="hidden" name="action" value="ajouter">
+					<input type="hidden" name="code" value="<%=art.getCode()%>"> 
+				</form>
+			</td>
+		</tr>
 		<%} %>
 	</table>
 </body>

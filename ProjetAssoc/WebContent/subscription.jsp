@@ -6,7 +6,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="model.Panier" %>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Inscription</title>>
+<title>Inscription</title>
 </head>
 <body>
 <h1>Veuillez vous inscrire :</h1>

@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.service.ArticleService;
-import controller.service.ClientService;
 
 /**
  * Servlet implementation class ArticleServlet

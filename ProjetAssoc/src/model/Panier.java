@@ -55,4 +55,17 @@ public class Panier {
 		}
 		return number;
 	}
+
+	public ArrayList<LignePanier> getLignesPanier() {
+		return lignesPanier;
+	}
+	
+	public void removeArticle(Article art){
+		LignePanier nvlle_ligne = new LignePanier(art, 1);
+		int index = Collections.binarySearch(lignesPanier,nvlle_ligne, new CompareLignePanierOnArticle());
+		if(index >= 0){
+			lignesPanier.remove(index);
+		}
+		
+	}
 }

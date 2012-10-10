@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 
 import model.Article;
+import model.exception.ArticleNotFoundException;
 
 
 public class ArticleService {
@@ -20,5 +21,10 @@ public class ArticleService {
 	public Collection<Article> getListArticleOnBD(){
 
 		return em.createQuery("SELECT a FROM "+ Article.class.getName()+" a").getResultList();
+	}
+	
+	public Article getArticle(int code) throws ArticleNotFoundException{
+		//TODO exception
+		return em.find(Article.class, code);
 	}
 }

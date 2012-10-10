@@ -49,4 +49,14 @@
     <servlet-name>ArticleServlet</servlet-name>
     <url-pattern>/articles</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PanierServlet</display-name>
+    <servlet-name>PanierServlet</servlet-name>
+    <servlet-class>controller.servlet.PanierServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PanierServlet</servlet-name>
+    <url-pattern>/panier</url-pattern>
+  </servlet-mapping>
 </web-app>

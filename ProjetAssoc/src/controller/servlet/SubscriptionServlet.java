@@ -49,8 +49,9 @@ public class SubscriptionServlet extends HttpServlet {
 		String pays = request.getParameter("pays");
 		System.out.println(id+" "+mdp+" "+nom+" "+prenom+" "+adresse+" "+cp+" "+ville);
 		clientService.create(id, mdp, nom, prenom, adresse, cp, ville, pays);
-		this.getServletContext().getRequestDispatcher("/home").forward(request, response);
 		em.close();
+		System.out.println("REDIRECTION LOGIN BY SUBSCRIPTION");
+		this.getServletContext().getRequestDispatcher("/login.jsp").forward(request,response);
 
 		
 	}
