@@ -43,9 +43,6 @@ public class TestBD {
 			System.out.println(art);
 		}
 		
-		//TEST AJOUT CLIENT EN BASE
-		Client client = new Client("zak", "zak", "oualkadi", "zakaria", "22 rue Tite live", "67200", "Strasbourg", "FRANCE");
-		clientService.create("zak", "zak", "oualkadi", "zakaria", "22 rue Tite live", "67200", "Strasbourg", "FRANCE");
 		
 		/*AuthorService auth_serv = new AuthorService(em);
 		Author author = auth_serv.find(5);
