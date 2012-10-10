@@ -59,4 +59,14 @@
     <servlet-name>PanierServlet</servlet-name>
     <url-pattern>/panier</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CommandeServlet</display-name>
+    <servlet-name>CommandeServlet</servlet-name>
+    <servlet-class>controller.servlet.CommandeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CommandeServlet</servlet-name>
+    <url-pattern>/commande</url-pattern>
+  </servlet-mapping>
 </web-app>

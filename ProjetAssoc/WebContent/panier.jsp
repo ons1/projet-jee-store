@@ -49,5 +49,9 @@
 		</tr>	
 		<%} %>
 	</table>
+	<form name="formCommander" action="panier" method="post">
+		<input type="submit" value="Commander"> 
+		<input type="hidden" name="action" value="commander">
+	</form>
 </body>
 </html>
