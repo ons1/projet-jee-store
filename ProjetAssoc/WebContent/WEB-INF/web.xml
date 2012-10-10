@@ -11,7 +11,7 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name></display-name>
+    <display-name>ControlAccess</display-name>
     <servlet-name>ControlAccess</servlet-name>
     <servlet-class>controller.servlet.ControlAccess</servlet-class>
   </servlet>
@@ -21,7 +21,7 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name></display-name>
+    <display-name>Disconnect</display-name>
     <servlet-name>Disconnect</servlet-name>
     <servlet-class>controller.servlet.Disconnect</servlet-class>
   </servlet>
