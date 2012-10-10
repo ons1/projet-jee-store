@@ -1,6 +1,10 @@
 package controller.servlet;
 
 import java.io.IOException;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,14 +30,16 @@ public class Subscription extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//this.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ClientService clientService = new ClientService();
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetAssoc");
+		EntityManager em = emf.createEntityManager();
+		ClientService clientService = new ClientService(em);
 		String id = request.getParameter("id");
 		String mdp = request.getParameter("mdp");
 		String nom = request.getParameter("nom");
@@ -43,7 +49,9 @@ public class Subscription extends HttpServlet {
 		String ville = request.getParameter("ville");
 		String pays = request.getParameter("pays");
 		clientService.create(id, mdp, nom, prenom, adresse, cp, ville, pays);
-		//this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+		em.close();
+
 		
 	}
 
