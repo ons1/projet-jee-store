@@ -1,7 +1,12 @@
 package model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="COMMANDE", schema="zakaria")
 
 public class Commande implements Comparable<Commande>{
 	
@@ -9,7 +14,7 @@ public class Commande implements Comparable<Commande>{
 		return identifiant;
 	}
 
-	public void setCode(Integer identifiant) {
+	public void setIdentifiant(Integer identifiant) {
 		this.identifiant = identifiant;
 	}
 	
