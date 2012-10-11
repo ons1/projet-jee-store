@@ -33,5 +33,12 @@ public class ArticleService {
 		art.setStock(quantite);
 		em.getTransaction().commit();
 	}
+	
+	public void addQteArticle(Article art, int quantite){
+		Article article = em.find(Article.class, art.getCode());
+		em.getTransaction().begin();
+		article.setStock(article.getStock()+quantite);
+		em.getTransaction().commit();
+	}
 
 }
