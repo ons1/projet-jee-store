@@ -36,6 +36,15 @@ public class SubscriptionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if (request.getParameter("password1")!=request.getParameter("password2")){
+			System.out.println("LES MOTS DE PASSE SONT DIFFERENTS");
+			this.getServletContext().getRequestDispatcher("/subscription.jsp").forward(request,response);
+		}
+		else if((request.getParameter("id")!=null)&&(request.getParameter("password1")!=null)){
+			System.out.println("LES CHAMPS OBLIGATOIRES NE SONT PAS REMPLIS");
+			this.getServletContext().getRequestDispatcher("/subscription.jsp").forward(request,response);
+		}
+		else{
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetAssoc");
 		EntityManager em = emf.createEntityManager();
 		ClientService clientService = new ClientService(em);
@@ -52,7 +61,7 @@ public class SubscriptionServlet extends HttpServlet {
 		em.close();
 		System.out.println("REDIRECTION LOGIN BY SUBSCRIPTION");
 		this.getServletContext().getRequestDispatcher("/login.jsp").forward(request,response);
-
+		}
 		
 	}
 
