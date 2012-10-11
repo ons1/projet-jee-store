@@ -93,7 +93,7 @@
 		</tr>	
 		<%} %>
 	</table>
-	<form name="formCommander" action="panier" method="post">
+	<form name="formCommander" action="commande" method="post">
 		<input type="submit" value="Commander"> 
 		<input type="hidden" name="action" value="commander">
 	</form>
