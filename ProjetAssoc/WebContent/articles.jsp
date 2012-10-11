@@ -56,7 +56,7 @@
 	<strong>Erreur : <%= (String) request.getAttribute("erreur")%></strong>
 	<br>
 	<%} %>
-	<table border="1" width="100%">
+	<table width="100%">
 		<tr>
 			<td>Code</td>
 			<td>Nom</td>

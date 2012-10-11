@@ -98,7 +98,15 @@ public class PanierServlet extends HttpServlet {
 			{
 				int qte = Integer.parseInt(request.getParameter("quantite"));
 				int qteOld = Integer.parseInt(request.getParameter("quantiteOld"));
-				if((qte > qteOld && (qte-qteOld) <= art.getStock()) || qte <= qteOld){
+				if(qte == 0){
+					panier.removeArticle(art);
+					//On remet en stock
+					articleService.updateQteArticle(art,(art.getStock()+qteOld));
+				}
+				else if(qte < 0){
+					request.setAttribute("erreur","Quantité negative !");
+				}
+				else if((qte > qteOld && (qte-qteOld) <= art.getStock()) || qte <= qteOld){
 					panier.majArticle(art,qte);
 					//On met a jour le stock
 					articleService.updateQteArticle(art,(art.getStock()+qteOld)-qte);
