@@ -4,6 +4,8 @@
 	<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>model.Article</class>
 		<class>model.Client</class>
+		<class>model.Commande</class>
+		<class>model.EstCompose</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver" />
