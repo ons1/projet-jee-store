@@ -98,7 +98,7 @@ public class PanierServlet extends HttpServlet {
 			{
 				int qte = Integer.parseInt(request.getParameter("quantite"));
 				int qteOld = Integer.parseInt(request.getParameter("quantiteOld"));
-				if((qte > qteOld && (qte-qteOld) <= art.getStock()) || qte < qteOld){
+				if((qte > qteOld && (qte-qteOld) <= art.getStock()) || qte <= qteOld){
 					panier.majArticle(art,qte);
 					//On met a jour le stock
 					articleService.updateQteArticle(art,(art.getStock()+qteOld)-qte);
