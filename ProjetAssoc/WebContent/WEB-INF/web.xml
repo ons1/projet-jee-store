@@ -69,4 +69,14 @@
     <servlet-name>CommandeServlet</servlet-name>
     <url-pattern>/commande</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CommandeService</display-name>
+    <servlet-name>CommandeService</servlet-name>
+    <servlet-class>controller.service.CommandeService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CommandeService</servlet-name>
+    <url-pattern>/CommandeService</url-pattern>
+  </servlet-mapping>
 </web-app>
