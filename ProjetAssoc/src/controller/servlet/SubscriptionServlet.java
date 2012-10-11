@@ -38,10 +38,14 @@ public class SubscriptionServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (!request.getParameter("password1").equals(request.getParameter("password2"))){
 			System.out.println("LES MOTS DE PASSE SONT DIFFERENTS");
+			String erreur = "LES MOTS DE PASSE SONT DIFFERENTS";
+			request.setAttribute("erreur", erreur);
 			this.getServletContext().getRequestDispatcher("/subscription.jsp").forward(request,response);
 		}
-		else if((request.getParameter("id").equals(null))&&(request.getParameter("password1").equals(null))){
+		else if((request.getParameter("id").equals(""))&&(request.getParameter("password1").equals(""))){
 			System.out.println("LES CHAMPS OBLIGATOIRES NE SONT PAS REMPLIS");
+			String erreur = "LES CHAMPS OBLIGATOIRES NE SONT PAS REMPLIS";
+			request.setAttribute("erreur", erreur);
 			this.getServletContext().getRequestDispatcher("/subscription.jsp").forward(request,response);
 		}
 		else{
