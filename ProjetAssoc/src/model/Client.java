@@ -144,7 +144,7 @@ public class Client {
 	@Column(name="IDENTIFIANT", nullable=false)
 	private String identifiant;
 	
-	@Column(name="MOT_DE_PASSE", nullable=true)
+	@Column(name="MOT_DE_PASSE", nullable=false)
 	private String mdp;
 	
 	@Column(name="NOM", nullable=true)

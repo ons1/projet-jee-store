@@ -49,22 +49,22 @@ public class SubscriptionServlet extends HttpServlet {
 			this.getServletContext().getRequestDispatcher("/subscription.jsp").forward(request,response);
 		}
 		else{
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetAssoc");
-		EntityManager em = emf.createEntityManager();
-		ClientService clientService = new ClientService(em);
-		String id = request.getParameter("id");
-		String mdp = request.getParameter("password1");
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
-		String adresse = request.getParameter("adresse");
-		String cp = request.getParameter("cp");
-		String ville = request.getParameter("ville");
-		String pays = request.getParameter("pays");
-		System.out.println(id+" "+mdp+" "+nom+" "+prenom+" "+adresse+" "+cp+" "+ville);
-		clientService.create(id, mdp, nom, prenom, adresse, cp, ville, pays);
-		em.close();
-		System.out.println("REDIRECTION LOGIN BY SUBSCRIPTION");
-		this.getServletContext().getRequestDispatcher("/login.jsp").forward(request,response);
+			EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetAssoc");
+			EntityManager em = emf.createEntityManager();
+			ClientService clientService = new ClientService(em);
+			String id = request.getParameter("id");
+			String mdp = request.getParameter("password1");
+			String nom = request.getParameter("nom");
+			String prenom = request.getParameter("prenom");
+			String adresse = request.getParameter("adresse");
+			String cp = request.getParameter("cp");
+			String ville = request.getParameter("ville");
+			String pays = request.getParameter("pays");
+			System.out.println(id+" "+mdp+" "+nom+" "+prenom+" "+adresse+" "+cp+" "+ville);
+			System.out.println(clientService.create(id, mdp, nom, prenom, adresse, cp, ville, pays));
+			em.close();
+			System.out.println("REDIRECTION LOGIN BY SUBSCRIPTION");
+			this.getServletContext().getRequestDispatcher("/login.jsp").forward(request,response);
 		}
 		
 	}
