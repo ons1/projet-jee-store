@@ -31,7 +31,7 @@
 						<li><a href="home">Accueil</a></li>
 						<li><a href="articles">Articles</a></li>
 						<li><a href="commande">Commande</a></li>
-						<li class="current_page_item"><a href="panier">Panier (<%=((Panier)session.getAttribute("Panier")).getNumberArticle() %>)</a></li>
+						<li class="current_page_item"><a href="panier">Panier (<%=((Panier)session.getAttribute("panier")).getNumberArticle() %>)</a></li>
 						<li><a href="disconnect"><%=session.getAttribute("user")%> : LogOut</a></li>
 					</ul>
 				</div>

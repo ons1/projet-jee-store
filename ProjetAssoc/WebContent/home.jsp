@@ -27,7 +27,7 @@
 						<li class="current_page_item"><a href="home">Accueil</a></li>
 						<li><a href="articles">Articles</a></li>
 						<li><a href="commande">Commande</a></li>
-						<li><a href="panier">Panier (<%=((Panier)session.getAttribute("Panier")).getNumberArticle() %>)</a></li>
+						<li><a href="panier">Panier (<%=((Panier)session.getAttribute("panier")).getNumberArticle() %>)</a></li>
 						<li><a href="disconnect"><%=session.getAttribute("user")%> : LogOut</a></li>
 					</ul>
 				</div>
@@ -44,8 +44,7 @@
 						<a href="#">Bienvenue sur le site de l'association </a>
 					</h2>
 					<p class="meta">
-						<span class="date">10 octobre 2012</span><span class="posted">Posté
-							par <a href="#">Admin</a>
+						<span class="date">10 octobre 2012</span><span class="posted">Utilisateur : <a href="#"><%=session.getAttribute("user")%></a>
 						</span>
 					</p>
 					<div style="clear: both;">&nbsp;</div>
