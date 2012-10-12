@@ -1,8 +1,11 @@
 package model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -92,6 +95,9 @@ public class Article implements Comparable<Article> {
 	@Column(name="CODE", nullable=false)
 	private Integer code;
 
+	@OneToMany(mappedBy = "article")
+	private Set<LigneCommande> ligneCommandes;
+	
 	@Column(name="NOM", nullable=true)
 	private String nom;
 
@@ -100,6 +106,10 @@ public class Article implements Comparable<Article> {
 
 	@Column(name="STOCK", nullable=true)
 	private int stock;
+
+	public Set<LigneCommande> getLigneCommandes() {
+		return ligneCommandes;
+	}
 
 
 
