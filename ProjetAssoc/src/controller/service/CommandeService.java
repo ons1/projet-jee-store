@@ -65,7 +65,7 @@ public class CommandeService {
 
 	@SuppressWarnings("unchecked")
 	public  Collection<Commande> getUserCommandes(String user){
-		return em.createQuery("SELECT a FROM "+ Commande.class.getName()+" a WHERE a.client ='admin'").getResultList();	 	
+		return em.createQuery("SELECT a FROM "+ Commande.class.getName()+" a WHERE a.client ='"+user+"'").getResultList();	 	
 	}
 
 	

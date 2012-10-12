@@ -38,27 +38,27 @@ public class CommandeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetAssoc");
-		EntityManager em = emf.createEntityManager();
-		CommandeService commandeService = new CommandeService(em);
-		Collection<Commande> listCommande = commandeService.getUserCommandes(request.getParameter("user"));
-		
-		System.out.println(listCommande);
-		
-		request.setAttribute("list_commande", listCommande);
-		ArrayList<LigneCommande> lignes = new ArrayList<LigneCommande>();
-		for (Commande commande:listCommande){
-			for(LigneCommande ec: commande.getLigneCommandes()){
-				lignes.add(ec);
-			}
-		request.setAttribute("list_lignesCommande", lignes);
+		if(request.getSession(false) == null || request.getSession(false).getAttribute("user") == null){
+			this.getServletContext().getRequestDispatcher("/home").forward(request,response);
+		}else{
+			EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetAssoc");
+			EntityManager em = emf.createEntityManager();
+			CommandeService commandeService = new CommandeService(em);
+			Collection<Commande> listCommande = commandeService.getUserCommandes((String)request.getSession().getAttribute("user"));
 			
+			ArrayList<LigneCommande> lignes = new ArrayList<LigneCommande>();
+			for (Commande commande:listCommande){
+				for(LigneCommande ec: commande.getLigneCommandes()){
+					lignes.add(ec);
+				}
+
+			}
+			request.setAttribute("list_lignesCommande", lignes);
+			request.setAttribute("list_commande", listCommande);
+
+
+			this.getServletContext().getRequestDispatcher("/commande.jsp").forward(request,response);
 		}
-		request.setAttribute("list_commande", commandeService.getUserCommandes(request.getParameter("user")));
-		
-		
-		this.getServletContext().getRequestDispatcher("/commande.jsp").forward(request,response);
 	}
 
 	/**
@@ -71,22 +71,18 @@ public class CommandeServlet extends HttpServlet {
 		EntityManager em = emf.createEntityManager();
 		CommandeService commandeService = new CommandeService(em);
 		HttpSession session = request.getSession();
-		String user = session.getAttribute("user").toString();
-		request.setAttribute("list_commande", commandeService.getUserCommandes(user));
+		String user = (String)session.getAttribute("user");
+		//request.setAttribute("list_commande", commandeService.getUserCommandes(user));
 		//String action = request.getParameter("action");
 		Panier panier = (Panier) session.getAttribute("panier");
 
-			//if(action.equals("commander"))
-			//{
-				if (panier.getNumberArticle()!=0){
-					commandeService.create(user,panier);
-					//estComposeService.create(id, panier);
-					panier.getLignesPanier().clear();
-				}
-			//}
-				else
-					this.getServletContext().getRequestDispatcher("/commande.jsp").forward(request,response);
+		if (panier.getNumberArticle()!=0){
+			commandeService.create(user,panier);
+			panier.getLignesPanier().clear();
+		}
 		
+		this.getServletContext().getRequestDispatcher("/commande").forward(request,response);
+
 	}
 
 }
