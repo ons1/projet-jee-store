@@ -6,5 +6,13 @@ public class ArticleNotFoundException extends Exception {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	public ArticleNotFoundException() {
+		System.out.println("ARTICLE NON TROUVE");
+	}
+	
+	public ArticleNotFoundException(int article) {
+		System.out.println("ARTICLE : "+article+" NON TROUVE");
+	}
 
 }

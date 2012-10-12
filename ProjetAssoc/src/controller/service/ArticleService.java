@@ -25,7 +25,11 @@ public class ArticleService {
 
 	public Article getArticle(int code) throws ArticleNotFoundException{
 		//TODO exception
-		return em.find(Article.class, code);
+		Article art = em.find(Article.class, code);
+		if(art == null){
+			throw new ArticleNotFoundException(code);
+		}
+		return art;
 	}
 
 	public void updateQteArticle(Article art,int quantite){
