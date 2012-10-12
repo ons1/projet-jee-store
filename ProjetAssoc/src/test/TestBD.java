@@ -11,6 +11,7 @@ import controller.service.ArticleService;
 import controller.service.ClientService;
 
 import model.Article;
+import model.Commande;
 
 
 public class TestBD {
@@ -41,7 +42,10 @@ public class TestBD {
 		for(Article art:list_article){
 			System.out.println(art);
 		}
-		
+		//requete
+		System.out.println("reccupère les commande de admin");
+		System.out.println(em.createQuery("SELECT a.identifiant FROM "+ Commande.class.getName()+" a WHERE a.client ='admin'").getResultList());	 	
+
 		
 		/*AuthorService auth_serv = new AuthorService(em);
 		Author author = auth_serv.find(5);
