@@ -2,9 +2,13 @@ package model;
 
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.ForeignKey;
 
 @Entity
 @Table(name="EST_COMPOSE", schema="zakaria")
