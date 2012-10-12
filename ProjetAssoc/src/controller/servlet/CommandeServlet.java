@@ -17,7 +17,6 @@ import model.Commande;
 import model.LigneCommande;
 import model.Panier;
 
-import controller.service.ArticleService;
 import controller.service.CommandeService;
 
 /**

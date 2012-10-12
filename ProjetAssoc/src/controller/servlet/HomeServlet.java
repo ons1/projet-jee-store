@@ -11,14 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import java.util.ArrayList;
-import java.util.Collection;
 
-import model.Commande;
 import model.Panier;
 
 import controller.service.ClientService;
-import controller.service.CommandeService;
 
 /**
  * Servlet implementation class ControlAccess
@@ -55,7 +51,6 @@ public class HomeServlet extends HttpServlet {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetAssoc");
 		EntityManager em = emf.createEntityManager();
 		ClientService clientService = new ClientService(em);
-		CommandeService commandeService = new CommandeService(em);
 		if(clientService.checkUserPassword(request.getParameter("user"), request.getParameter("password"))){
 			session = request.getSession();
 			session.setAttribute("user", request.getParameter("user"));
