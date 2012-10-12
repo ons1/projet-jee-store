@@ -4,6 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<%@ page import="model.Panier"%>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -26,7 +27,7 @@
 						<li class="current_page_item"><a href="home">Accueil</a></li>
 						<li><a href="articles">Articles</a></li>
 						<li><a href="commande">Commande</a></li>
-						<li><a href="panier">Panier</a></li>
+						<li><a href="panier">Panier (<%=((Panier)session.getAttribute("Panier")).getNumberArticle() %>)</a></li>
 						<li><a href="disconnect"><%=session.getAttribute("user")%> : LogOut</a></li>
 					</ul>
 				</div>

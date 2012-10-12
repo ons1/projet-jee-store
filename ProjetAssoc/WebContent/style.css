@@ -78,7 +78,7 @@ a:hover {
 
 #logo {
 	float: left;
-	width: 300px;
+	width: 200px;
 	margin: 0;
 	padding: 0;
 	color: #FFFFFF;
@@ -170,7 +170,7 @@ a:hover {
 
 #menu {
 	float: right;
-	width: 500px;
+	width: 700px;
 	height: 90px;
 	margin: 0 auto;
 	padding: 0;
@@ -178,7 +178,7 @@ a:hover {
 
 #menu ul {
 	float: right;
-	margin: 0;
+	margin: 0 auto;
 	padding: 0px 0px 0px 0px;
 	list-style: none;
 	line-height: normal;
