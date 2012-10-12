@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <%@ page import="java.util.*"%>
+<%@ page import="java.text.*"%>
 <%@ page import="java.util.Collection"%>
 <%@ page import="model.Article"%>
 <%@ page import="model.Panier"%>
@@ -17,6 +18,10 @@
 	<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
+<%
+	SimpleDateFormat formatDateJour = new SimpleDateFormat("dd/MM/yyyy");
+	String dateFormatee = formatDateJour.format(new Date()); 
+%>
 	<div id="wrapper">
 		<div id="header-wrapper" class="container">
 			<div id="header" class="container">
@@ -31,7 +36,7 @@
 						<li class="current_page_item"><a href="articles">Articles</a></li>
 						<li><a href="commande">Commande</a></li>
 						<li><a href="panier">Panier (<%=((Panier)session.getAttribute("panier")).getNumberArticle() %>)</a></li>
-						<li><a href="disconnect"><%=session.getAttribute("user")%> : LogOut</a></li>
+						<li><a href="disconnect">${sessionScope.user} : LogOut</a></li>
 					</ul>
 				</div>
 			</div>
@@ -47,7 +52,7 @@
 						<a href="#">Catalogue des articles</a>
 					</h2>
 					<p class="meta">
-						<span class="date">10 octobre 2012</span><span class="posted">Utilisateur <a href="#"><%= session.getAttribute("user") %></a>
+						<span class="date"><%= dateFormatee %></span><span class="posted">Utilisateur <a href="#">${sessionScope.user}</a>
 						</span>
 					</p>
 					<div style="clear: both;">&nbsp;</div>
@@ -56,6 +61,9 @@
 	      if (request.getAttribute("erreur") != null) { %>
 	<strong>Erreur : <%= (String) request.getAttribute("erreur")%></strong>
 	<br>
+	<%}else if(request.getAttribute("panierok") != null){%>
+
+		<strong><%= (String) request.getAttribute("panierok")%></strong>
 	<%} %>
 	<table width="100%">
 		<tr>

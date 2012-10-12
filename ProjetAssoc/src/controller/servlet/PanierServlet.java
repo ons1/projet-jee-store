@@ -73,6 +73,7 @@ public class PanierServlet extends HttpServlet {
 						session.setAttribute("panier", panier);
 					}
 					articleService.updateQteArticle(art,(art.getStock()-qte));
+					request.setAttribute("panierok",qte+" article(s) \""+art.getNom()+"\" placé(s) dans le panier !");
 				}
 				//SI STOCK INSUFFISANT
 				else

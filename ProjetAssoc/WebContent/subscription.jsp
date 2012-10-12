@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <%@ page import="java.util.*"%>
+<%@ page import="java.text.*"%>
 <%@ page import="java.util.Collection"%>
 <%@ page import="model.Article"%>
 <%@ page import="model.Panier"%>
@@ -17,6 +18,10 @@
 	<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
+<%
+	SimpleDateFormat formatDateJour = new SimpleDateFormat("dd/MM/yyyy");
+	String dateFormatee = formatDateJour.format(new Date()); 
+%>
 	<div id="wrapper">
 		<div id="header-wrapper" class="container">
 			<div id="header" class="container">
