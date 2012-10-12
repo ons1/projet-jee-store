@@ -5,7 +5,6 @@
 		<class>model.Article</class>
 		<class>model.Client</class>
 		<class>model.Commande</class>
-		<class>model.EstCompose</class>
 		<class>model.LigneCommande</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver" />

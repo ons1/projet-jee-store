@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import model.Commande;
-import model.EstCompose;
 import model.Panier;
 
 import controller.service.ClientService;

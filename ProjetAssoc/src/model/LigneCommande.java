@@ -12,6 +12,7 @@ import javax.persistence.*;
 public class LigneCommande implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id_lc")
 	private int id;
 	private static final long serialVersionUID = 1L;
@@ -37,10 +38,52 @@ public class LigneCommande implements Serializable {
 	public LigneCommande() {
 		super();
 	}
+	public LigneCommande(int cmd,int art_code,int qte) {
+		super();
+		this.idArticle = art_code;
+		this.quantite = qte;
+		this.idCommande = cmd;
+	}
 
 	@Override
 	public String toString() {
 		return article+" | "+quantite;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getIdCommande() {
+		return idCommande;
+	}
+	public void setIdCommande(int idCommande) {
+		this.idCommande = idCommande;
+	}
+	public int getIdArticle() {
+		return idArticle;
+	}
+	public void setIdArticle(int idArticle) {
+		this.idArticle = idArticle;
+	}
+	public Commande getCommande() {
+		return commande;
+	}
+	public void setCommande(Commande commande) {
+		this.commande = commande;
+	}
+	public Article getArticle() {
+		return article;
+	}
+	public void setArticle(Article article) {
+		this.article = article;
+	}
+	public int getQuantite() {
+		return quantite;
+	}
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
 	}
    
 }

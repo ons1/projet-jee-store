@@ -7,8 +7,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="java.text.*"%>
 <%@ page import="java.util.Collection"%>
-<%@ page import="model.Article"%>
-<%@ page import="model.Panier"%>
+<%@ page import="model.*"%>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -61,6 +60,34 @@
 	      if (request.getAttribute("erreur") != null) { %>
 	<strong>Erreur : <%= (String) request.getAttribute("erreur")%></strong>
 	<br>
+	<%} else if(request.getAttribute("commandeOK") != null) { %>
+	<strong>Erreur : <%= (String) request.getAttribute("erreur")%></strong>
+	<br>
+	<%} %>
+	
+	<%for(Commande c:(Collection<Commande>)request.getAttribute("list_commande")){ %>
+	<table border="1">
+		<tr>
+			<td>ID COMMANDE</td>
+			<td>DATE COMMANDE</td>
+		</tr>
+		<tr>
+			<td><%=c.getIdentifiant() %></td>
+ 			<td><%= (c.getDate_commande() != null ? new SimpleDateFormat("dd/MM/yyyy").format(c.getDate_commande()):"") %></td> 
+		</tr>
+		<tr>
+			<td>ARTICLE</td>
+			<td>QUANTITE</td>
+		</tr>
+	<%for(LigneCommande l:(Collection<LigneCommande>)request.getAttribute("list_lignesCommande")){ if(l.getIdCommande() == c.getIdentifiant()){%>
+		<tr>
+			<td><%=l.getArticle().getNom() %></td>
+			<td><%=l.getQuantite() %></td>
+		</tr>
+		<%}}%>
+
+	</table>
+	</br>
 	<%} %>
 					</div>
 				</div>

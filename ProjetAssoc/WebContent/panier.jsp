@@ -62,7 +62,7 @@
 	      if (request.getAttribute("erreur") != null) { %>
 	<strong>Erreur : <%= (String) request.getAttribute("erreur")%></strong>
 	<br>
-	<%} %>
+	<%}%>
 	<table width="100%">
 		<tr>
 			<td>Code</td>

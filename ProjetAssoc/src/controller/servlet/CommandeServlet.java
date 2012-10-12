@@ -14,12 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Commande;
-import model.EstCompose;
+import model.LigneCommande;
 import model.Panier;
 
 import controller.service.ArticleService;
 import controller.service.CommandeService;
-import controller.service.EstComposeService;
 
 /**
  * Servlet implementation class CommandeServlet
@@ -43,15 +42,14 @@ public class CommandeServlet extends HttpServlet {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetAssoc");
 		EntityManager em = emf.createEntityManager();
 		CommandeService commandeService = new CommandeService(em);
-		EstComposeService estComposeService = new EstComposeService(em);
 		Collection<Commande> listCommande = commandeService.getUserCommandes(request.getParameter("user"));
 		
 		System.out.println(listCommande);
 		
 		request.setAttribute("list_commande", listCommande);
-		ArrayList<EstCompose> lignes = new ArrayList<EstCompose>();
+		ArrayList<LigneCommande> lignes = new ArrayList<LigneCommande>();
 		for (Commande commande:listCommande){
-			for(EstCompose ec: commandeService.getLignesCommandes(commande.getIdentifiant())){
+			for(LigneCommande ec: commande.getLigneCommandes()){
 				lignes.add(ec);
 			}
 		request.setAttribute("list_lignesCommande", lignes);
@@ -72,7 +70,6 @@ public class CommandeServlet extends HttpServlet {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetAssoc");
 		EntityManager em = emf.createEntityManager();
 		CommandeService commandeService = new CommandeService(em);
-		EstComposeService estComposeService = new EstComposeService(em);
 		HttpSession session = request.getSession();
 		String user = session.getAttribute("user").toString();
 		request.setAttribute("list_commande", commandeService.getUserCommandes(user));
@@ -82,12 +79,13 @@ public class CommandeServlet extends HttpServlet {
 			//if(action.equals("commander"))
 			//{
 				if (panier.getNumberArticle()!=0){
-					int id = commandeService.create(user);
-					estComposeService.create(id, panier);
-					this.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+					commandeService.create(user,panier);
+					//estComposeService.create(id, panier);
+					panier.getLignesPanier().clear();
 				}
 			//}
-			this.getServletContext().getRequestDispatcher("/commande.jsp").forward(request,response);
+				else
+					this.getServletContext().getRequestDispatcher("/commande.jsp").forward(request,response);
 		
 	}
 
