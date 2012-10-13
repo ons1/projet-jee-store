@@ -107,7 +107,7 @@
 				<td align="right"><input type="text" name="pays"></td>
 			</tr>
 		</table>
-		<input type="submit" value="Enregistrer">
+		<input type="submit" value="Enregistrer" class="btn_submit">
 
 		</table>
 	</form>

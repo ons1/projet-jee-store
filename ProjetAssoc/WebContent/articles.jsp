@@ -67,10 +67,10 @@
 	<%} %>
 	<table width="100%">
 		<tr>
-			<td>Code</td>
-			<td>Nom</td>
-			<td>Prix</td>
-			<td>Stock</td>
+			<th>Code</th>
+			<th>Nom</th>
+			<th>Prix</th>
+			<th>Stock</th>
 		</tr>
 		<%
 				Collection<Article> list_article = (Collection<Article>)request.getAttribute("list_article");
@@ -87,7 +87,7 @@
 					<input type="hidden" name="code" value="<%=art.getCode()%>">
 					<%if(art.getStock() >0){ %> 
 					<input type="text" name="quantite" value="1">
-					<input type="submit" value="Commander">
+					<input type="submit" value="Ajouter au panier" class="btn_submit">
 					<%} %> 
 				</form>
 			</td>

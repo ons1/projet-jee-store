@@ -1,10 +1,8 @@
-
 /*
 Design by Free CSS Templates
 http://www.freecsstemplates.org
 Released for free under a Creative Commons Attribution 2.5 License
 */
-
 body {
 	margin: 0;
 	padding: 0;
@@ -14,7 +12,7 @@ body {
 	color: #787878;
 }
 
-h1, h2, h3 {
+h1,h2,h3 {
 	margin: 0;
 	padding: 0;
 	font-weight: normal;
@@ -34,12 +32,13 @@ h3 {
 	font-size: 1.6em;
 }
 
-p, ul, ol {
+p,ul,ol {
 	margin-top: 0;
 	line-height: 180%;
 }
 
-ul, ol {
+ul,ol {
+	
 }
 
 a {
@@ -48,8 +47,50 @@ a {
 }
 
 a:hover {
+	
 }
 
+table {
+/* 	border-collapse: collapse; */
+	width: 90%;
+}
+
+th,td {
+/* 	border: 1px solid black; */
+	width: 20%;
+}
+
+td {
+	text-align: center;
+}
+
+caption {
+	font-weight: bold
+}
+
+.btn_submit {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background-color:#ededed;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#777777;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:2px 16px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #ffffff;
+}.btn_submit:hover {
+	background-color:#dfdfdf;
+}.btn_submit:active {
+	position:relative;
+	top:1px;
+}
 #wrapper {
 	padding-top: 50px;
 }
@@ -60,7 +101,6 @@ a:hover {
 }
 
 /* Header */
-
 #header-wrapper {
 	overflow: hidden;
 	height: 140px;
@@ -75,7 +115,6 @@ a:hover {
 }
 
 /* Logo */
-
 #logo {
 	float: left;
 	width: 200px;
@@ -84,7 +123,8 @@ a:hover {
 	color: #FFFFFF;
 }
 
-#logo h1, #logo p {
+#logo h1,#logo p {
+	
 }
 
 #logo h1 {
@@ -96,7 +136,7 @@ a:hover {
 
 #logo h1 a {
 	color: #FFFFFF;
-	text-shadow: 1px 1px 0px rgba(0,0,0,.2);
+	text-shadow: 1px 1px 0px rgba(0, 0, 0, .2);
 }
 
 #logo p {
@@ -120,7 +160,6 @@ a:hover {
 }
 
 /* Splash */
-
 #splash {
 	width: 960px;
 	height: 300px;
@@ -128,7 +167,6 @@ a:hover {
 }
 
 /* Search */
-
 #search {
 	float: right;
 	width: 280px;
@@ -167,7 +205,6 @@ a:hover {
 }
 
 /* Menu */
-
 #menu {
 	float: right;
 	width: 700px;
@@ -195,7 +232,7 @@ a:hover {
 	padding: 0px 20px 0px 20px;
 	text-decoration: none;
 	text-align: center;
-	text-shadow: 1px 1px 0px rgba(0,0,0,.2);
+	text-shadow: 1px 1px 0px rgba(0, 0, 0, .2);
 	text-transform: uppercase;
 	font-family: 'Abel', sans-serif;
 	font-size: 14px;
@@ -204,16 +241,16 @@ a:hover {
 	border: none;
 }
 
-#menu a:hover, #menu .current_page_item a {
+#menu a:hover,#menu .current_page_item a {
 	text-decoration: none;
 	color: #FFFFFF;
 }
 
 #menu .current_page_item a {
+	
 }
 
 /* Page */
-
 #page {
 	width: 900px;
 	margin: 0 auto;
@@ -222,7 +259,6 @@ a:hover {
 }
 
 /* Content */
-
 #content {
 	float: left;
 	width: 590px;
@@ -265,6 +301,7 @@ a:hover {
 }
 
 .post .meta a {
+	
 }
 
 .post .entry {
@@ -300,7 +337,6 @@ a:hover {
 }
 
 /* Sidebar */
-
 #sidebar {
 	float: right;
 	width: 280px;
@@ -366,8 +402,8 @@ a:hover {
 }
 
 /* Calendar */
-
 #calendar {
+	
 }
 
 #calendar_wrap {
@@ -387,7 +423,6 @@ a:hover {
 }
 
 /* Three Column Footer Content */
-
 #footer-content {
 	color: #D6E2F0;
 }
@@ -417,6 +452,7 @@ a:hover {
 }
 
 #footer-content a {
+	
 }
 
 #column1 {
@@ -436,7 +472,6 @@ a:hover {
 }
 
 /* Footer */
-
 #footer {
 	height: 100px;
 	margin: 0 auto;

@@ -30,7 +30,7 @@ public class CommandeService {
 			entr.begin();
 			Commande newCommande = new Commande();
 			newCommande.setClient(user);
-			newCommande.setDate_commande(new Date());
+			newCommande.setDate_commande(new Date(System.currentTimeMillis()));
 			em.persist(newCommande);
 			entr.commit();
 			System.out.println("idcommande : "+newCommande.getIdentifiant());

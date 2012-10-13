@@ -68,16 +68,16 @@
 	<%for(Commande c:(Collection<Commande>)request.getAttribute("list_commande")){ %>
 	<table border="1">
 		<tr>
-			<td>ID COMMANDE</td>
-			<td>DATE COMMANDE</td>
+			<th>ID COMMANDE</th>
+			<th>DATE COMMANDE</th>
 		</tr>
 		<tr>
 			<td><%=c.getIdentifiant() %></td>
  			<td><%= (c.getDate_commande() != null ? new SimpleDateFormat("dd/MM/yyyy").format(c.getDate_commande()):"") %></td> 
 		</tr>
 		<tr>
-			<td>ARTICLE</td>
-			<td>QUANTITE</td>
+			<th>ARTICLE</th>
+			<th>QUANTITE</th>
 		</tr>
 	<%for(LigneCommande l:(Collection<LigneCommande>)request.getAttribute("list_lignesCommande")){ if(l.getIdCommande() == c.getIdentifiant()){%>
 		<tr>

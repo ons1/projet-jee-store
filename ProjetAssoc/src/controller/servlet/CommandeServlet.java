@@ -15,8 +15,10 @@ import javax.servlet.http.HttpSession;
 
 import model.Commande;
 import model.LigneCommande;
+import model.LignePanier;
 import model.Panier;
 
+import controller.service.ArticleService;
 import controller.service.CommandeService;
 
 /**
@@ -56,6 +58,7 @@ public class CommandeServlet extends HttpServlet {
 			request.setAttribute("list_commande", listCommande);
 
 
+			System.out.println("redirection commande jsp");
 			this.getServletContext().getRequestDispatcher("/commande.jsp").forward(request,response);
 		}
 	}
@@ -64,23 +67,39 @@ public class CommandeServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetAssoc");
-		EntityManager em = emf.createEntityManager();
-		CommandeService commandeService = new CommandeService(em);
 		HttpSession session = request.getSession();
-		String user = (String)session.getAttribute("user");
-		//request.setAttribute("list_commande", commandeService.getUserCommandes(user));
-		//String action = request.getParameter("action");
 		Panier panier = (Panier) session.getAttribute("panier");
-
-		if (panier.getNumberArticle()!=0){
-			commandeService.create(user,panier);
-			panier.getLignesPanier().clear();
+		String action = request.getParameter("action");
+		
+		if(action.equals("commander")){
+			if (panier.getNumberArticle()>0){
+				System.out.println("panier non nul");
+				EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetAssoc");
+				EntityManager em = emf.createEntityManager();
+				CommandeService commandeService = new CommandeService(em);
+				String user = (String)session.getAttribute("user");
+				commandeService.create(user,panier);
+				panier.getLignesPanier().clear();
+				this.doGet(request, response);
+			}else{
+				System.out.println("panier nul");
+				request.setAttribute("erreur", "Votre panier est vide !");
+				this.getServletContext().getRequestDispatcher("/panier.jsp").forward(request,response);
+			}
+		}else if(action.equals("annuler")){
+			if(panier != null){
+				EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetAssoc");
+				EntityManager em = emf.createEntityManager();
+				ArticleService articleService = new ArticleService(em);
+				for(LignePanier l:panier.getLignesPanier()){
+					articleService.addQteArticle(l.getArticle(), l.getQuantite());
+				}
+				panier.getLignesPanier().clear();
+			}
+			this.getServletContext().getRequestDispatcher("/panier.jsp").forward(request,response);
 		}
 		
-		this.getServletContext().getRequestDispatcher("/commande").forward(request,response);
 
 	}
 

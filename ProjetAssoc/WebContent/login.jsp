@@ -60,16 +60,16 @@
 	<form name="identification" action="home" method="post">
 		<table>
 			<tr>
-				<td>Identifiant : </td> 
+				<th>Identifiant : </th> 
 				<td><input type="text" name="user"></td>
 			</tr>
 			<tr> 
-				<td>Mot de passe : </td> 
+				<th>Mot de passe : </th> 
 				<td><input type="password" name="password"> </td>
 			</tr>
 			<tr> 
 				<td><a href="subscription">Pas encore inscrit ?</a></td>
-				<td><input type="submit" value="OK"></td>
+				<td><input type="submit" value="OK" class="btn_submit"></td>
 			</tr>
 		</table>
 	</form>

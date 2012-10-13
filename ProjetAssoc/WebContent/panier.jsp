@@ -63,12 +63,12 @@
 	<strong>Erreur : <%= (String) request.getAttribute("erreur")%></strong>
 	<br>
 	<%}%>
-	<table width="100%">
+	<table>
 		<tr>
-			<td>Code</td>
-			<td>Nom</td>
-			<td>Prix</td>
-			<td>Quantite</td>
+			<th>Code</th>
+			<th>Nom</th>
+			<th>Prix</th>
+			<th>Quantite</th>
 		</tr>
 		<%
 				Panier panier = (Panier)session.getAttribute("panier");
@@ -81,7 +81,7 @@
 			<td>
 				<form name="chgQte<%=l.getArticle().getCode() %>" action="panier" method="post">
 					<input type="text" name="quantite" value="<%= l.getQuantite() %>">
-					<input type="submit" value="maj"> 
+					<input type="submit" value="maj" class="btn_submit"> 
 					<input type="hidden" name="quantiteOld" value="<%= l.getQuantite() %>">
 					<input type="hidden" name="action" value="majqte">
 					<input type="hidden" name="code" value="<%=l.getArticle().getCode()%>"> 
@@ -89,7 +89,7 @@
 			</td>
 			<td>
 				<form name="remArt<%=l.getArticle().getCode() %>" action="panier" method="post">
-					<input type="submit" value="Supprimer"> 
+					<input type="submit" value="Supprimer" class="btn_submit"> 
 					<input type="hidden" name="quantite" value="<%= l.getQuantite() %>">
 					<input type="hidden" name="action" value="supprimer">
 					<input type="hidden" name="code" value="<%=l.getArticle().getCode()%>"> 
@@ -98,9 +98,14 @@
 		</tr>	
 		<%} %>
 	</table>
+	</br>
 	<form name="formCommander" action="commande" method="post">
-		<input type="submit" value="Commander"> 
+		<input type="submit" value="Commander" class="btn_submit"> 
 		<input type="hidden" name="action" value="commander">
+	</form>
+	<form name="formCommander" action="commande" method="post">
+		<input type="submit" value="Annuler" class="btn_submit"> 
+		<input type="hidden" name="action" value="annuler">
 	</form>
 					</div>
 				</div>

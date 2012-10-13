@@ -55,6 +55,11 @@
 					</p>
 					<div style="clear: both;">&nbsp;</div>
 					<div class="entry"></div>
+					<ul>
+						<li><a href="articles">Consultez les articles disponibles</a></li>
+					
+						<li><a href="commande">Consultez vos commandes</a></li>
+					</ul>
 				</div>
 				<div style="clear: both;">&nbsp;</div>
 			</div>
