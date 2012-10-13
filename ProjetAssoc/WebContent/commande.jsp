@@ -58,11 +58,13 @@
 					<div class="entry">
 					<% // Affichage du message d'erreur s'il existe
 	      if (request.getAttribute("erreur") != null) { %>
-	<strong>Erreur : <%= (String) request.getAttribute("erreur")%></strong>
-	<br>
+	<strong class="str_erreur">Erreur : <%= (String) request.getAttribute("erreur")%></strong>
+	</br>
+	</br>
 	<%} else if(request.getAttribute("commandeOK") != null) { %>
-	<strong>Erreur : <%= (String) request.getAttribute("erreur")%></strong>
-	<br>
+	<strong class="str_ok">Statut commande : <%= (String) request.getAttribute("commandeOK")%></strong>
+	</br>
+	</br>
 	<%} %>
 	
 	<%for(Commande c:(Collection<Commande>)request.getAttribute("list_commande")){ %>

@@ -25,7 +25,7 @@ public class CommandeService {
 	 * @param panier
 	 * @return
 	 */
-	public boolean createCommande(String user,Panier panier){
+	public int createCommande(String user,Panier panier){
 		try{
 			//Met la commande en base dans la table commande
 			EntityTransaction entr=em.getTransaction();
@@ -44,11 +44,11 @@ public class CommandeService {
 			}
 			entr2.commit();
 			
-			return true;
+			return newCommande.getIdentifiant();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			return -1;
 		}
 
 	}

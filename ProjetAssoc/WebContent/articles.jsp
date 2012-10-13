@@ -59,11 +59,14 @@
 					<div class="entry">
 					<% // Affichage du message d'erreur s'il existe
 	      if (request.getAttribute("erreur") != null) { %>
-	<strong>Erreur : <%= (String) request.getAttribute("erreur")%></strong>
-	<br>
+	<strong class="str_erreur">Erreur : <%= (String) request.getAttribute("erreur")%></strong>
+	</br>
+	</br>
 	<%}else if(request.getAttribute("panierok") != null){%>
 
-		<strong><%= (String) request.getAttribute("panierok")%></strong>
+		<strong class="str_ok"><%= (String) request.getAttribute("panierok")%></strong>
+		</br>
+		</br>
 	<%} %>
 	<table width="100%">
 		<tr>

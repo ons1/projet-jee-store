@@ -17,13 +17,13 @@ import controller.service.ClientService;
  */
 public class SubscriptionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SubscriptionServlet() {
-        super();
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public SubscriptionServlet() {
+		super();
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -44,7 +44,7 @@ public class SubscriptionServlet extends HttpServlet {
 			this.getServletContext().getRequestDispatcher("/subscription.jsp").forward(request,response);
 		}
 		//controle des champs obligatoires
-		else if((request.getParameter("id").equals(""))&&(request.getParameter("password1").equals(""))){
+		else if((request.getParameter("id").equals(""))||(request.getParameter("password1").equals(""))){
 			System.out.println("LES CHAMPS OBLIGATOIRES NE SONT PAS REMPLIS");
 			String erreur = "LES CHAMPS OBLIGATOIRES NE SONT PAS REMPLIS";
 			request.setAttribute("erreur", erreur);
@@ -56,22 +56,28 @@ public class SubscriptionServlet extends HttpServlet {
 			EntityManager em = emf.createEntityManager();
 			ClientService clientService = new ClientService(em);
 			String id = request.getParameter("id");
-			String mdp = request.getParameter("password1");
-			String nom = request.getParameter("nom");
-			String prenom = request.getParameter("prenom");
-			String adresse = request.getParameter("adresse");
-			String cp = request.getParameter("cp");
-			String ville = request.getParameter("ville");
-			String pays = request.getParameter("pays");
-			System.out.println(id+" "+mdp+" "+nom+" "+prenom+" "+adresse+" "+cp+" "+ville);
-			System.out.println(clientService.create(id, mdp, nom, prenom, adresse, cp, ville, pays));
-			
+			if(!clientService.userExist(id)){
+				String mdp = request.getParameter("password1");
+				String nom = request.getParameter("nom");
+				String prenom = request.getParameter("prenom");
+				String adresse = request.getParameter("adresse");
+				String cp = request.getParameter("cp");
+				String ville = request.getParameter("ville");
+				String pays = request.getParameter("pays");
+				System.out.println(id+" "+mdp+" "+nom+" "+prenom+" "+adresse+" "+cp+" "+ville);
+				System.out.println(clientService.create(id, mdp, nom, prenom, adresse, cp, ville, pays));
+
+				System.out.println("REDIRECTION LOGIN BY SUBSCRIPTION");
+				request.setAttribute("subOK", id+" : Votre inscription a bien été prise en compte, veuillez vous logger !");
+				this.getServletContext().getRequestDispatcher("/login.jsp").forward(request,response);
+			}else{
+				request.setAttribute("erreur", id+" : existe déja, veuillez choisir un autre identifiant");
+				this.getServletContext().getRequestDispatcher("/subscription.jsp").forward(request,response);
+			}
 			//fermeture du manager
 			em.close();
-			System.out.println("REDIRECTION LOGIN BY SUBSCRIPTION");
-			this.getServletContext().getRequestDispatcher("/login.jsp").forward(request,response);
 		}
-		
+
 	}
 
 }

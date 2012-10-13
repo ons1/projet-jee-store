@@ -60,7 +60,7 @@
 					<div class="entry">
 					<% // Affichage du message d'erreur s'il existe
 	      if (request.getAttribute("erreur") != null) { %>
-	<strong>Erreur : <%= (String) request.getAttribute("erreur")%></strong>
+	<strong class="str_erreur">Erreur : <%= (String) request.getAttribute("erreur")%></strong>
 	<br>
 	<%}%>
 	<table>

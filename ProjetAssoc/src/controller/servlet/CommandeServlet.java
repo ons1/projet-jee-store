@@ -60,7 +60,6 @@ public class CommandeServlet extends HttpServlet {
 			request.setAttribute("list_commande", listCommande);
 
 
-			System.out.println("redirection commande jsp");
 			this.getServletContext().getRequestDispatcher("/commande.jsp").forward(request,response);
 		}
 	}
@@ -81,9 +80,17 @@ public class CommandeServlet extends HttpServlet {
 				EntityManager em = emf.createEntityManager();
 				CommandeService commandeService = new CommandeService(em);
 				String user = (String)session.getAttribute("user");
-				commandeService.createCommande(user,panier);
-				panier.getLignesPanier().clear();
-				this.doGet(request, response);
+				//on cree la commande
+				int id = commandeService.createCommande(user,panier);
+				if(id != -1){
+					//on vide le panier
+					panier.getLignesPanier().clear();
+					request.setAttribute("commandeOK", "Votre commande a été enregistré sous le numéro : "+id);
+					this.doGet(request, response);
+				}else{
+					request.setAttribute("erreur", "Votre commande n'a pas pu être enregistré, veuillez ressayer");
+					this.getServletContext().getRequestDispatcher("/panier.jsp").forward(request,response);
+				}
 			}else{
 				System.out.println("panier nul");
 				request.setAttribute("erreur", "Votre panier est vide !");

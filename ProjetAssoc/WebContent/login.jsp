@@ -54,9 +54,14 @@
 					<div class="entry">
 					<% // Affichage du message d'erreur s'il existe
 	      if (request.getAttribute("erreur") != null) { %>
-	<strong>Erreur : <%= (String) request.getAttribute("erreur")%></strong>
-	<br>
-	<%} %>
+	<strong class="str_erreur">Erreur : <%= (String) request.getAttribute("erreur")%></strong>
+	</br>
+	</br>
+	<%} else if (request.getAttribute("subOK") != null) { %>
+	<strong class="str_ok"><%= (String) request.getAttribute("subOK")%></strong>
+	</br>
+	</br>
+	<%}%>
 	<form name="identification" action="home" method="post">
 		<table>
 			<tr>

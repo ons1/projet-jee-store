@@ -59,51 +59,51 @@
 					<div class="entry">
 					<% // Affichage du message d'erreur s'il existe
 	      if (request.getAttribute("erreur") != null) { %>
-	<strong>Erreur : <%= (String) request.getAttribute("erreur")%></strong>
+	<strong class="str_erreur">Erreur : <%= (String) request.getAttribute("erreur")%></strong>
 	<br>
 	<%} %>
 	<form name="inscription" action="subscription" method="post">
 		<table>
 			<tr>
-				<td align="left"><label for="id">*Identifiant : </label></td>
+				<th align="left"><label for="id">*Identifiant : </label></th>
 				<td align="right"><input type="text" name="id"></td>
 			</tr>
 
 			<tr>
-				<td align="left"><label for="password1">*Mot de passe :
-				</label></td>
+				<th align="left"><label for="password1">*Mot de passe :
+				</label></th>
 				<td align="right"><input type="password" name="password1"></td>
 			</tr>
 			<tr>
-				<td align="left"><label for="password2">*Mot de passe
+				<th align="left"><label for="password2">*Mot de passe
 						(confirmation) : </label></td>
-				<td align="right"><input type="password" name="password2"></td>
+				<td align="right"><input type="password" name="password2"></th>
 			</tr>
 
 			<tr>
-				<td align="left"><label for="nom">Nom de famille : </label></td>
+				<th align="left"><label for="nom">Nom de famille : </label></th>
 				<td align="right"><input type="text" name="nom"></td>
 			</tr>
 
 			<tr>
-				<td align="left"><label for="prenom">Prenom : </label></td>
+				<th align="left"><label for="prenom">Prenom : </label></th>
 				<td align="right"><input type="text" name="prenom"></td>
 			</tr>
 			<tr>
-				<td align="left"><label for="adresse">Adresse (rue) : </label></td>
+				<th align="left"><label for="adresse">Adresse (rue) : </label></th>
 				<td align="right"><input type="text" name="adresse"></td>
 			</tr>
 
 			<tr>
-				<td align="left"><label for="cp">Code postal : </label></td>
+				<th align="left"><label for="cp">Code postal : </label></th>
 				<td align="right"><input type="text" name="cp"></td>
 			</tr>
 			<tr>
-				<td align="left"><label for="ville">Ville : </label></td>
+				<th align="left"><label for="ville">Ville : </label></th>
 				<td align="right"><input type="text" name="ville"></td>
 			</tr>
 			<tr>
-				<td align="left"><label for="pays">Pays : </label></td>
+				<th align="left"><label for="pays">Pays : </label></th>
 				<td align="right"><input type="text" name="pays"></td>
 			</tr>
 		</table>

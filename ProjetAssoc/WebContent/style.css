@@ -3,6 +3,17 @@ Design by Free CSS Templates
 http://www.freecsstemplates.org
 Released for free under a Creative Commons Attribution 2.5 License
 */
+
+.str_ok
+{
+color:#01DF3A;
+}
+
+.str_erreur
+{
+color:#FF0040;
+}
+
 body {
 	margin: 0;
 	padding: 0;
