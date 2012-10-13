@@ -36,12 +36,14 @@ public class SubscriptionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Controle des 2 passwords
 		if (!request.getParameter("password1").equals(request.getParameter("password2"))){
 			System.out.println("LES MOTS DE PASSE SONT DIFFERENTS");
 			String erreur = "LES MOTS DE PASSE SONT DIFFERENTS";
 			request.setAttribute("erreur", erreur);
 			this.getServletContext().getRequestDispatcher("/subscription.jsp").forward(request,response);
 		}
+		//controle des champs obligatoires
 		else if((request.getParameter("id").equals(""))&&(request.getParameter("password1").equals(""))){
 			System.out.println("LES CHAMPS OBLIGATOIRES NE SONT PAS REMPLIS");
 			String erreur = "LES CHAMPS OBLIGATOIRES NE SONT PAS REMPLIS";
@@ -49,6 +51,7 @@ public class SubscriptionServlet extends HttpServlet {
 			this.getServletContext().getRequestDispatcher("/subscription.jsp").forward(request,response);
 		}
 		else{
+			//Tout se passe bien, creation en base
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetAssoc");
 			EntityManager em = emf.createEntityManager();
 			ClientService clientService = new ClientService(em);
@@ -62,6 +65,8 @@ public class SubscriptionServlet extends HttpServlet {
 			String pays = request.getParameter("pays");
 			System.out.println(id+" "+mdp+" "+nom+" "+prenom+" "+adresse+" "+cp+" "+ville);
 			System.out.println(clientService.create(id, mdp, nom, prenom, adresse, cp, ville, pays));
+			
+			//fermeture du manager
 			em.close();
 			System.out.println("REDIRECTION LOGIN BY SUBSCRIPTION");
 			this.getServletContext().getRequestDispatcher("/login.jsp").forward(request,response);

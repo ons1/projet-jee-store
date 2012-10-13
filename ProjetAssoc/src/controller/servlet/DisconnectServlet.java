@@ -45,8 +45,8 @@ public class DisconnectServlet extends HttpServlet {
 	
 	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Panier panier = (Panier) request.getSession().getAttribute("panier");
-		//on remet les articles du panier en stock
 		
+		//on remet les articles du panier en stock
 		if(panier != null){
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetAssoc");
 			EntityManager em = emf.createEntityManager();

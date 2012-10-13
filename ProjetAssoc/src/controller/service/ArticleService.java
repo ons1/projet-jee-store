@@ -23,8 +23,13 @@ public class ArticleService {
 		return em.createQuery("SELECT a FROM "+ Article.class.getName()+" a").getResultList();
 	}
 
+	/**
+	 * Méthode qui retourne l'article en fonction de son id(code)
+	 * @param code
+	 * @return article
+	 * @throws ArticleNotFoundException
+	 */
 	public Article getArticle(int code) throws ArticleNotFoundException{
-		//TODO exception
 		Article art = em.find(Article.class, code);
 		if(art == null){
 			throw new ArticleNotFoundException(code);
@@ -32,17 +37,39 @@ public class ArticleService {
 		return art;
 	}
 
-	public void updateQteArticle(Article art,int quantite){
-		em.getTransaction().begin();
-		art.setStock(quantite);
-		em.getTransaction().commit();
+	/**
+	 * Met a jour la quantite du stock de l'article en base
+	 * @param art
+	 * @param quantite
+	 * @return
+	 */
+	public boolean updateQteArticle(Article art,int quantite){
+		try{
+			em.getTransaction().begin();
+			art.setStock(quantite);
+			em.getTransaction().commit();
+			return true;
+		}catch (Exception r){
+			return false;
+		}
 	}
-	
-	public void addQteArticle(Article art, int quantite){
-		Article article = em.find(Article.class, art.getCode());
-		em.getTransaction().begin();
-		article.setStock(article.getStock()+quantite);
-		em.getTransaction().commit();
+
+	/**
+	 * Ajout des stocks à l'article en base
+	 * @param art
+	 * @param quantite
+	 * @return
+	 */
+	public boolean addQteArticle(Article art, int quantite){
+		try{
+			Article article = em.find(Article.class, art.getCode());
+			em.getTransaction().begin();
+			article.setStock(article.getStock()+quantite);
+			em.getTransaction().commit();
+			return true;
+		}catch(Exception r){
+			return false;
+		}
 	}
 
 }

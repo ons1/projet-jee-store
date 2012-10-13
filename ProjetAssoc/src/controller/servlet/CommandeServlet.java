@@ -39,9 +39,11 @@ public class CommandeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Controle la session
 		if(request.getSession(false) == null || request.getSession(false).getAttribute("user") == null){
 			this.getServletContext().getRequestDispatcher("/home").forward(request,response);
 		}else{
+			//Recupere la liste des commandes en base et la renvoi a la jsp commande
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetAssoc");
 			EntityManager em = emf.createEntityManager();
 			CommandeService commandeService = new CommandeService(em);
@@ -79,7 +81,7 @@ public class CommandeServlet extends HttpServlet {
 				EntityManager em = emf.createEntityManager();
 				CommandeService commandeService = new CommandeService(em);
 				String user = (String)session.getAttribute("user");
-				commandeService.create(user,panier);
+				commandeService.createCommande(user,panier);
 				panier.getLignesPanier().clear();
 				this.doGet(request, response);
 			}else{
@@ -89,6 +91,7 @@ public class CommandeServlet extends HttpServlet {
 			}
 		}else if(action.equals("annuler")){
 			if(panier != null){
+				//Remet les quantite en stock + vide panier
 				EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetAssoc");
 				EntityManager em = emf.createEntityManager();
 				ArticleService articleService = new ArticleService(em);

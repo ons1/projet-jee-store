@@ -13,6 +13,12 @@ public class ClientService {
 		em = pem;
 	}
 	
+	/**
+	 * Methode qui controle un couple user/password
+	 * @param user
+	 * @param password
+	 * @return
+	 */
 	public boolean checkUserPassword(String user, String password){
 		//Controle de l'utilisateur
 		Client my_cli = em.find(Client.class, user);
@@ -21,6 +27,18 @@ public class ClientService {
 		
 	}
 	
+	/**
+	 * Méthode qui cree un utilisateur en base
+	 * @param id
+	 * @param mdp
+	 * @param nom
+	 * @param prenom
+	 * @param adresse
+	 * @param cp
+	 * @param ville
+	 * @param pays
+	 * @return
+	 */
 	public boolean create(String id, String mdp, String nom, String prenom, String adresse, String cp, String ville, String pays){
 		//EntityManager em = emf.createEntityManager();
 		try{

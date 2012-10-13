@@ -44,6 +44,7 @@ public class ArticleServlet extends HttpServlet {
 		if(request.getSession(false) == null || request.getSession(false).getAttribute("user") == null){
 			this.getServletContext().getRequestDispatcher("/home").forward(request,response);
 		}else{
+			//Cree la liste des articles disponibles en base
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetAssoc");
 			EntityManager em = emf.createEntityManager();
 			ArticleService articleService = new ArticleService(em);

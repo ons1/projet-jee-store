@@ -51,6 +51,7 @@ public class HomeServlet extends HttpServlet {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjetAssoc");
 		EntityManager em = emf.createEntityManager();
 		ClientService clientService = new ClientService(em);
+		//Controle de user/password
 		if(clientService.checkUserPassword(request.getParameter("user"), request.getParameter("password"))){
 			session = request.getSession();
 			session.setAttribute("user", request.getParameter("user"));

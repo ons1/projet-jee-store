@@ -19,13 +19,15 @@ public class CommandeService {
 		em = pem;
 	}
 
-	public int getId(){
-		return 666;
-	}
-
-
-	public boolean create(String user,Panier panier){
+	/**
+	 * Crée une commande en base
+	 * @param user
+	 * @param panier
+	 * @return
+	 */
+	public boolean createCommande(String user,Panier panier){
 		try{
+			//Met la commande en base dans la table commande
 			EntityTransaction entr=em.getTransaction();
 			entr.begin();
 			Commande newCommande = new Commande();
@@ -33,13 +35,15 @@ public class CommandeService {
 			newCommande.setDate_commande(new Date(System.currentTimeMillis()));
 			em.persist(newCommande);
 			entr.commit();
-			System.out.println("idcommande : "+newCommande.getIdentifiant());
+			
+			//Rempli l'association ligneCOmmande
 			EntityTransaction entr2=em.getTransaction();
 			entr2.begin();
 			for(LignePanier l:panier.getLignesPanier()){
 				em.persist(new LigneCommande(newCommande.getIdentifiant(),l.getArticle().getCode(),l.getQuantite()));
 			}
 			entr2.commit();
+			
 			return true;
 		}
 		catch (Exception e) {
@@ -49,6 +53,11 @@ public class CommandeService {
 
 	}
 
+	/**
+	 * Récupere toutes les commandes d'un utilisateur
+	 * @param user
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public  Collection<Commande> getUserCommandes(String user){
 		return em.createQuery("SELECT a FROM "+ Commande.class.getName()+" a WHERE a.client ='"+user+"'").getResultList();	 	
